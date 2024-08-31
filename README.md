@@ -4,7 +4,7 @@
 
 1. Clone de repository by running
    ```bash
-   https://github.com/marcoslima12/to-do-app-api.git
+   git clone https://github.com/marcoslima12/to-do-app-api.git
    
 2. Create a .env and cpoy the following content to it:
    
@@ -17,7 +17,8 @@
 
 3. To run the development server, run
    ````bash
-       docker-compose up --build
-  If you are using Linux, make sure to use 
-  ```bash
-sudo docker compose up --build
+       docker-compose up
+(if you are using Linux, run)
+````bash
+       sudo docker compose up
+ 
