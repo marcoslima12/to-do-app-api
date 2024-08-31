@@ -1,1 +1,41 @@
+# Python - diretórios e arquivos
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.env
+*.venv
+*.egg
+*.egg-info/
+dist/
+build/
+*.log
+
+# Enviroment - arquivos de ambiente e configuração
 .env
+.vscode/
+.idea/
+venv/
+*.iml
+
+# Docker
+docker-compose.override.yml
+docker-compose.yml
+*.env
+
+# PostgreSQL
+pgdata/
+*.sql
+
+# Logs
+logs/
+*.log
+
+# Migrations do Alembic 
+migrations/
+versions/
+
+# Cache do editor
+*.swp
+*.swo
+*~
