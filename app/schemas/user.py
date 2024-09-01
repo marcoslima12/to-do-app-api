@@ -1,16 +1,17 @@
 from pydantic import BaseModel
+from uuid import UUID
 
 
 class UserBase(BaseModel):
     email: str
-
-class UserCreate(UserBase):
-    email: str
     fullname: str
 
+class UserCreate(UserBase):
+    pass
+
 class User(UserBase):
-    id: int
+    id: UUID
     
     class Config:
         orm_mode = True
-        
+    

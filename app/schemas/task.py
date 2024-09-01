@@ -1,5 +1,6 @@
 from datetime import date
 from typing import Optional
+from uuid import UUID
 from pydantic import BaseModel
         
 class TaskBase(BaseModel):
@@ -12,8 +13,8 @@ class TaskCreate(TaskBase):
     pass
 
 class Task(TaskBase):
-    id: int
-    user_id: int
+    id: UUID
+    user_id: UUID
     
     class Config:
         orm_mode = True
