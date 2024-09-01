@@ -12,6 +12,9 @@ class TaskBase(BaseModel):
 class TaskCreate(TaskBase):
     pass
 
+class TaskUpdateDone(BaseModel):
+    isDone: bool
+
 class Task(TaskBase):
     id: UUID
     user_id: UUID

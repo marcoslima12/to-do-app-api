@@ -1,8 +1,8 @@
 from uuid import UUID
 from fastapi import APIRouter, Depends, HTTPException
 from sqlalchemy.orm import Session
-from app.actions.task import create_task, delete_task, get_task, get_tasks, get_tasks_by_user
-from app.schemas.task import Task, TaskCreate
+from app.actions.task import create_task, delete_task, get_task, get_tasks, get_tasks_by_user, update_task_done
+from app.schemas.task import Task, TaskCreate, TaskUpdateDone
 from app.database import get_db
 
 router = APIRouter()
@@ -27,15 +27,15 @@ def read_tasks_by_user_route(user_id: UUID, skip: int = 0, limit: int = 10, db: 
     tasks = get_tasks_by_user(db, user_id=user_id, skip=skip, limit=limit)
     return tasks
 
-@router.put("/{task_id}", response_model=Task)
-def update_task(task_id: int, task: TaskCreate, db: Session = Depends(get_db)):
-    db_task = update_task(db, task_id, task)
+@router.patch("/done/{task_id}", response_model=Task)
+def update_task_done_route(task_id: UUID, task_update: TaskUpdateDone, db: Session = Depends(get_db)):
+    db_task = update_task_done(db, task_id=task_id, is_done=task_update.isDone)
     if db_task is None:
         raise HTTPException(status_code=404, detail="Task not found")
     return db_task
 
 @router.delete("/{task_id}", response_model=Task)
-def delete_task(task_id: int, db: Session = Depends(get_db)):
+def delete_tasks(task_id: UUID, db: Session = Depends(get_db)):
     db_task = delete_task(db, task_id=task_id)
     if db_task is None:
         raise HTTPException(status_code=404, detail="Task not found")
