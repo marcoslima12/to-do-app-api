@@ -12,8 +12,11 @@ class TaskBase(BaseModel):
 class TaskCreate(TaskBase):
     pass
 
-class TaskUpdateDone(BaseModel):
-    isDone: bool
+class TaskUpdate(BaseModel):
+    title: Optional[str] = None
+    desc: Optional[str] = None
+    deadline: Optional[date] = None
+    isDone: Optional[bool] = None
 
 class Task(TaskBase):
     id: UUID
