@@ -9,6 +9,10 @@ def get_user(db: Session, user_id: UUID):
 def get_users(db: Session, skip: int = 0, limit: int = 100):
   return db.query(User).offset(skip).limit(limit).all()
 
+
+def get_user_by_email(db: Session, email: str) -> User | None:
+  return db.query(User).filter(User.email == email).first()
+
 def create_user(db: Session, user: UserCreate):
   db_user = User(email=user.email, fullname=user.fullname)
   db.add(db_user)

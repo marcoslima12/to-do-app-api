@@ -16,6 +16,9 @@ def get_task(db: Session, task_id: UUID):
 def get_tasks(db: Session, skip: int = 0, limit: int = 10):
     return db.query(Task).offset(skip).limit(limit).all()
 
+def get_tasks_by_user(db: Session, user_id: UUID, skip: int = 0, limit: int = 10):
+    return db.query(Task).filter(Task.user_id == user_id).offset(skip).limit(limit).all()
+
 def delete_task(db: Session, task_id: int):
     db_task = db.query(Task).filter(Task.id == task_id).first()
     if db_task:
