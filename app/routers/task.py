@@ -7,7 +7,7 @@ from app.database import get_db
 
 router = APIRouter()
 
-@router.post("/", response_model=Task)
+@router.post("/createTask/{user_id}", response_model=Task)
 def create_tasks(task: TaskCreate, user_id: UUID, db: Session = Depends(get_db)):
     return create_task(db, task, user_id=user_id)
 
